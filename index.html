@@ -128,17 +128,6 @@
       const deleteUser = async (url, id) => {
         await fetch(`${apiUrl}/${id}`,{ method: "DELETE" });
       };
-      tableBodyEl.onclick = (event) => {
-        console.log(event);
-        if (event.target.dataset.loc === "delete") {
-          userId1 = event.target.parentElement.id;
-          console.log(userId1);
-
-          deleteUser(apiUrl, userId1);
-          document.getElementById(userId1).parentElement.remove();
-          console.log(userId1);
-        }
-      };
 
       const getUsers = async () => {
         const response = await fetch(apiUrl);
@@ -226,6 +215,16 @@
           modalShellEl.classList.toggle("hide");
           userId = target.parentElement.id;
           console.log(userId, "--userid");
+          return;
+        }
+        
+         if (target.dataset.loc === "delete") {
+          userId1 = event.target.parentElement.id;
+          console.log(userId1);
+
+          deleteUser(apiUrl, userId1);
+          document.getElementById(userId1).parentElement.remove();
+          console.log(userId1);
         }
       };
       const overlayOnClick = () => {
